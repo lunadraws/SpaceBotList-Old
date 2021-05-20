@@ -1,6 +1,6 @@
-# SpaceotList (old)
+# SpaceotList (old) 
 
-This is the old version of https://spacebotlist.xyz | Give Credits to SpaceBotList.xyz in public use
+This is the old version of https://spacebotlist.xyz | Give Credits to SpaceBotList.xyz and Dexter in public use
 
 install modules:
 
@@ -34,3 +34,9 @@ exports.verifieddevs=process.env.verifieddevs
 exports.pendingbots=process.env.pendingbots
 
 ```
+
+Team:
+
+Developers
+[Dexter](https://github.com/AhmedSabry957)
+[SkyAlumny](https://github.com/SkyAlumny)
