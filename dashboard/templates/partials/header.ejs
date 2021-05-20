@@ -1,0 +1,1506 @@
+<html lang="en">
+<head>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.9"></script>
+    <meta charset="UTF-8">
+    <meta name="og:description" content="Find your own discord bot to have good start for your server!" />
+    <meta name="og:image" content="https://cdn.discordapp.com/attachments/831283997560274986/840699649223426148/startup3.png" />
+    <meta name="og:title" content="SpaceBotList" />
+    <meta name="theme-color" content="#d2efe6" />
+    <meta name="keywords" content="discordbots.org , top.gg, Discordbots.co , Bots , bot list , spacebotlist.xyz, discord bot list , discord boats , blaze , lists, discord bots , discord bots list">
+    <meta property="og:description" content="Find your own bot!" />
+    <meta name="og:image" content="https://cdn.discordapp.com/attachments/831283997560274986/840699649223426148/startup3.png" />
+    <meta name="theme-color" content="#d2efe6" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <button style="animation: fadeIn 0.4s;" onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-sort-up"></i></button>
+    <div class="header">
+      <div class="header-left">
+        <div id="leftt2">
+          <div class="dropdown2">
+          <button class="dropbtn2"><i class="fa fa-navicon"></i></button>
+            <div class="dropdown2-content">
+            <div class="container">
+              <a href="/" ><i class="fa fa-home"></i> Home</a>
+              <a target="_blank" href="https://discord.gg/EjTWt7pHPj"><i class="fa fa-users"></i> Discord</a>
+              <a target="_blank" href="/bots"><i class="fa fa-wrench"></i> Bots</a>
+              <a target="_blank" href="/add"><i class="fa fa-plus"></i> Add Bot</a>
+              <a target="_blank" href="/bug"><i class="fa fa-bug"></i> Report Bug</a>
+              <a target="_blank" href="/docs"><i class="fa fa-book"></i> Docs</a>
+              <% if (user) { %>
+                <% if(bot.config.owners.includes(user.id)){ %>
+                    <a target="_blank" href="/panel"><i class="fa fa-code"></i> Panel</a>
+                <% } %>
+                <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="container">
+          <div id="leftt">
+          <img src="https://cdn.discordapp.com/avatars/800050702768537601/acfe712930f952fbc9d11a06b69c7b0f.webp?size=128"
+         style="border-radius: 50px;" width="50px" height="50px">
+        <a href="/" ><i class="fa fa-home"></i> Home</a>
+        <a target="_blank" href="https://discord.gg/EjTWt7pHPj"><i class="fa fa-users"></i> Discord</a>
+        <a target="_blank" href="/bots"><i class="fa fa-wrench"></i> Bots</a>
+        <a target="_blank" href="/add"><i class="fa fa-plus"></i> Add Bot</a>
+        <a target="_blank" href="/bug"><i class="fa fa-bug"></i> Report Bug</a>
+        <a target="_blank" href="/docs"><i class="fa fa-book"></i> Docs</a>
+        <% if (user) { %>
+        <% if(bot.config.owners.includes(user.id)){ %>
+            <a target="_blank" href="/panel"><i class="fa fa-code"></i> Panel</a>
+        <% } %>
+        <% } %>
+      </div>
+    </div>
+</div>
+<div class="header-right" style="padding: 5px">
+  <% if (user) { %>
+<div class="dropdown">
+<% let avatar = "" %>
+<% avatar = !user.avatar ? "https://maxcdn.icons8.com/Share/icon/Logos/discord_logo1600.png" : `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256` %>
+<img src="<%= avatar %>" style="border-radius: 50px;" width="35px" height="35px" >
+<button class="dropbtn"><%= user.username %>#<%= user.discriminator %> 
+  <i class="fa fa-caret-down"></i>
+</button>
+<div class="dropdown-content">
+  <div class="container">
+  <a href="/profile"><i class="fa fa-user-circle-o"></i> Profile</a>
+  <a href="/add"><i class="fa fa-plus"></i> New Bot</a>
+  <a href="/bots"><i class="fa fa-wrench"></i> Bots</a>
+    <a style="color: rgb(151, 26, 26)" href="/logout"><i class="fa fa-sign-out"></i> Log Out</a>
+  </div>
+</div> 
+<% } else { %>
+    <br id="brr" style="display: block;">
+    <a class="header a" style="padding: 15px;" href="/login">Log in with discord</a>
+  <% } %>
+</div>
+</div>
+<br>
+</div>
+  <style>
+   html {
+  scroll-behavior: smooth;
+}
+    #myBtn {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 30px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: rgb(255, 255, 255);
+  color: black;
+  cursor: pointer;
+  transition: 0.4s;
+  padding: 10px;
+  border-radius: 4px;
+  animation: fadeIn 0.4s;
+}
+
+#myBtn:hover {
+  background-color: #555;
+  color: white;
+  transition: 0.4s;
+  animation: fadeIn 0.4s;
+}
+.navbar {
+  overflow: hidden;
+  animation: fadeIn 0.7s;
+  background-color: #333;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  transition: 0.4s;
+  padding: 14px 16px;
+  animation: fadeIn 0.7s;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: right;
+  overflow: hidden;
+  animation: fadeIn 0.7s;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  animation: fadeIn 0.7s;
+  margin: 0;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #202225;
+  min-width: 160px;
+  transition: 0.4s;
+  border-radius: 5px;
+  width: 0px;
+  height: 200px;
+  animation: fadeIn 0.7s;
+  padding: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: rgba(255, 148, 77, 0.822);
+  padding: 12px 16px;
+  text-decoration: none;
+  transition: 0.4s;
+  display: block;
+  animation: fadeIn 0.7s;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  transition: 0.4s;
+  animation: fadeIn 0.7s;
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  transition: 0.4s;
+  display: block;
+  animation: fadeIn 1s;
+}
+.dropdown {
+  float: right;
+  overflow: hidden;
+  animation: fadeIn 0.7s;
+}
+
+footer {
+  text-align: left;
+  padding: 3px;
+  background-color: #202225;
+  animation: fadeIn 0.7s;
+}
+
+  /* Style the header with a grey background and some padding */
+.header {
+  overflow: hidden;
+  background-color: #202225;
+  padding: 10px 10px;
+  animation: fadeIn 0.4s;
+}
+
+/* Style the header links */
+.header a {
+  color: rgb(220, 220, 220);
+  text-align: center;
+  padding: 5px;
+  text-decoration: none;
+  transition: 0.7s;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 3px;
+}
+.header b {
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 5px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 3px;
+}
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+
+/* Change the background color on mouse-over */
+.header a:hover {
+  transition: 0.7s;
+  color: rgb(255, 255, 255);
+}
+/* Style the active/current link*/
+.header a.active {
+  background-color: dodgerblue;
+  content: "\f023";
+  color: white;
+}
+.header.a:after {
+     content: "\f07a";
+     font-family: FontAwesome;
+     font-size: 14px;
+     padding-left: 5px;
+}
+.header.a:after {
+     content: "\f023";
+     font-family: FontAwesome;
+     font-size: 14px;
+     padding-left: 4px;
+}
+.header.b:after {
+     content: "\f07a";
+     font-family: FontAwesome;
+     font-size: 14px;
+     padding-left: 5px;
+}
+.header.b:after {
+     content: "\f023";
+     font-family: FontAwesome;
+     font-size: 14px;
+     padding-left: 4px;
+}
+.header a.active:hover {
+  content: "\f023";
+  background-color: rgb(177, 216, 255);
+  color: rgb(255, 255, 255);
+}
+.button {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.5s;
+  border-style: solid;
+  border-color: black;
+  border-radius: 5px;
+  line-height: 25px;
+  width: 130%;
+  background-color: rgb(252, 252, 252);
+  outline: none;
+  border: none;
+  margin: 5px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px;
+}
+
+.button:hover {
+  background-color: rgb(114, 137, 218);
+  border-color: rgb(255, 255, 255);
+  color: white;
+}
+.button.custom {
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.5s;
+  border-radius: 5px;
+  line-height: 25px;
+  width: 130%;
+  background-color: rgb(202, 202, 202);
+  outline: none;
+  margin: 5px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px;
+}
+
+.button.custom:hover {
+  background-color: rgb(114, 137, 218);
+  border-color: rgb(255, 255, 255);
+  color: white;
+}
+/* Float the link section to the right */
+.header-right {
+  float: right;
+}
+.header-left {
+  float: left;
+}
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.woff2) format('woff2');
+}
+
+@font-face {
+    font-family: 'Hind';
+    src: url('https://fonts.gstatic.com/s/hind/v8/5aU69_a8oxmIdGl4BA.woff2');
+}
+  body {
+    font-family: "Hind", Arial, sans-serif;
+    background-color: #2f3136;
+  }
+  p {
+    font: "Arial";
+    color: white
+  }
+  a {
+    color: white
+  }
+  .left {
+    margin-left: 50px;
+    color: white
+  }
+  h1 {
+    color: white
+  }
+  h2 {
+    color: white
+  }
+  h3 {
+    color: white
+  }
+  .container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 10px;
+  flex-wrap: wrap;
+  display: flex;
+  animation: fadeIn 0.7s;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s;
+  }
+  .card {
+background-color: #535353!important;
+color: white;
+text-align: center;
+animation: fadeIn 0.5s;
+border-radius: 10px;
+margin: 15px;
+box-shadow: 0 4px 20px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
+  }
+
+  /* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+ .content{
+  display:none;
+  position: absolute;
+  background-color: #838383;
+  min-width: 160px;
+  transition: 0.4s;
+  border-radius: 5px;
+  width: 0px;
+  height: 200px;
+  animation: fadeIn 1s;
+  padding: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+ .select {
+height: 35px;
+width: 400px;
+animation: fadeIn 0.4s;
+border-radius: 4px;
+border-style: solid;
+border-color: black;
+transition: 0.6s;
+background-color: rgb(255, 255, 255);
+color: black;
+ }
+
+ .select.tags {
+height: 225px;
+width: 400px;
+animation: fadeIn 0.4s;
+border-radius: 4px;
+border-style: solid;
+border-color: black;
+transition: 0.6s;
+outline: none;
+background-color: rgb(255, 255, 255);
+color: black;
+ }
+ .select.tags option {
+animation: fadeIn 0.4s;
+border-radius: 1px;
+transition: 0.6s;
+height: 35px;
+outline: none;
+background-color: rgb(255, 255, 255);
+color: rgb(0, 0, 0);
+text-align: left;
+padding: 5px;
+ }
+ .select.tags option:hover {
+animation: fadeIn 0.4s;
+border-radius: 1px;
+transition: 0.6s;
+height: 35px;
+outline: none;
+background-color: rgb(255, 255, 255);
+color: black;
+text-align: left;
+padding: 5px;
+ }
+ .input{
+ width: 600px;
+ height: 40px;
+ animation: fadeIn 0.7s;
+ transition: all 0.5s;
+ border-color: rgb(255, 255, 255);
+ color: rgb(0, 0, 0);
+ border-color: rgb(95, 95, 95);
+ background-color: rgb(255, 255, 255);
+ border-radius: 2px;
+ }
+ .input:hover{
+ width: 600px;
+ height: 40px;
+ transition: all 0.5s;
+ border-color: rgb(0, 0, 0);
+ color: rgb(0, 0, 0);
+ background-color: rgb(255, 255, 255);
+ border-radius: 2px;
+ }
+
+ .input2{
+ width: 600px;
+ height: 40px;
+ transition: 0.3s;
+ animation: fadeIn 0.7s;
+ border-style: solid;
+border-color: black;
+ color: rgb(150, 150, 150);
+ background-color: rgb(58, 58, 58);
+ }
+ .input2:hover{
+ width: 600px;
+ height: 40px;
+ transition: 0.3s;
+ animation: fadeIn 0.4s;
+ border-color: rgb(255, 255, 255);
+ color: rgb(255, 255, 255);
+ background-color: rgb(58, 58, 58);
+ }
+ .search{
+ width: 800px;
+ height: 40px;
+ animation: fadeIn 0.7s;
+ transition: all 0.5s;
+ border-style: solid;
+ border-color: rgb(173, 173, 173);
+ color: rgb(0, 0, 0);
+ border-color: rgb(95, 95, 95);
+ background-color: rgb(255, 255, 255);
+ border-radius: 4px;
+ }
+ .search:hover{
+ width: 800px;
+ height: 40px;
+ transition: all 0.5s;
+ border-color: rgb(0, 0, 0);
+ color: rgb(0, 0, 0);
+ border-style: solid;
+ background-color: rgb(255, 255, 255);
+ }
+ .dropdown2 {
+  float: right;
+  overflow: hidden;
+  animation: fadeIn 0.7s;
+}
+
+.dropdown2 .dropbtn2 {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  animation: fadeIn 0.7s;
+  margin: 0;
+}
+
+.dropdown2-content {
+  display: none;
+  position: absolute;
+  background-color: #ffb6b6;
+  min-width: 160px;
+  transition: 0.4s;
+  width: 250px;
+  height: 360px;
+  animation: fadeIn 0.7s;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown2-content a {
+  float: none;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  transition: 0.4s;
+  display: block;
+  animation: fadeIn 0.7s;
+  text-align: left;
+}
+
+.dropdown2-content a:hover {
+  transition: 0.4s;
+  animation: fadeIn 0.7s;
+  background-color: rgb(245, 195, 195);
+}
+
+.dropdown2:hover .dropdown2-content {
+  transition: 0.4s;
+  display: block;
+  animation: fadeIn 1s;
+}
+.dropdown2 {
+  float: right;
+  overflow: hidden;
+  animation: fadeIn 0.7s;
+}
+.bigbox{
+  border-radius: 10px;
+  box-shadow: 1px 1px 25px #888888;
+  width: 1000px;
+  height: 2050px;
+  padding: 20px 10px;
+  background-color: rgb(41, 43, 47);
+  animation: fadeIn 1s;
+  text-align: left;
+}
+.docsbox{
+  border-radius: 10px;
+  box-shadow: 1px 1px 25px #888888;
+  width: 1000px;
+  height: 1300px;
+  padding: 20px 10px;
+  background-color: rgb(41, 43, 47);
+  animation: fadeIn 1s;
+  text-align: left;
+}
+.addinput{
+ width: 600px;
+ height: 40px;
+ animation: fadeIn 0.7s;
+ transition: all 0.5s;
+ border-color: rgb(255, 255, 255);
+ color: rgb(0, 0, 0);
+ border-color: rgb(95, 95, 95);
+ background-color: rgb(255, 255, 255);
+ border-radius: 5px;
+ border-style: solid;
+ }
+ .addinput:hover{
+ width: 600px;
+ height: 40px;
+ transition: all 0.5s;
+ border-color: rgb(0, 0, 0);
+ color: rgb(0, 0, 0);
+ background-color: rgb(255, 255, 255);
+ border-radius: 5px;
+ }
+ .botcard{
+   width: 350px;
+   height: 430px;
+   background-color: rgb(41, 43, 47);
+   animation: fadeIn 0.7s;
+   transition: all 0.5s;
+   padding: 20px 10px;
+   margin: 15px;
+   border-radius: 5px;
+   box-shadow: 1px 1px 10px #888888;
+   color: white;
+   text-align: center;
+ }
+ .pendingcard{
+   width: 550px;
+   height: 550px;
+   background-color: rgb(41, 43, 47);
+   animation: fadeIn 0.7s;
+   transition: all 0.5s;
+   padding: 20px 10px;
+   margin: 15px;
+   border-radius: 5px;
+   box-shadow: 1px 1px 10px #888888;
+   color: white;
+   text-align: center;
+ }
+ .viewbutton {
+  color: white;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.5s;
+  line-height: 25px;
+  width: 130px;
+  border-radius: 3px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+}
+
+.viewbutton:hover {
+  background-color: rgb(114, 137, 218);
+  color: rgb(255, 255, 255);
+}
+.viewbutton.active {
+  color: white;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.5s;
+  line-height: 25px;
+  width: 130px;
+  border-radius: 3px;
+  background-color: rgb(114, 137, 218);
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+}
+
+.viewbutton.active:hover {
+  background-color: rgb(252, 252, 252);
+  color: black;
+}
+.right {
+    position: relative;
+    left: 300px;
+    top: -200px;
+    color: #888888;
+    width: calc(100% - 300px)
+}
+.boticon{
+  padding: 20px;
+  width: 300px;
+  height: 300px;
+  border-radius: 200px;
+}
+.bigbox2{
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px #888888;
+  width: 1000px;
+  height: 1100px;
+  padding: 20px 10px;
+  background-color: rgb(41, 43, 47);
+  animation: fadeIn 1s;
+}
+.box3{
+  border-radius: 10px;
+  box-shadow: 5px 5px 5px #888888;
+  width: 250px;
+  height: 50px;
+  padding: 20px 10px;
+  background-color: rgb(255, 211, 208);
+  animation: fadeIn 1s;
+}
+.markdown-body::after {
+    clear: both
+}
+ .explore {
+  color: white;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.5s;
+  line-height: 25px;
+  width: 400px;
+  border-radius: 50px;
+  outline: none;
+  border: none;
+  background-color: rgb(114, 137, 218);
+  cursor: pointer;
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+}
+
+.explore:hover {
+  background-color: rgb(114, 137, 218);
+  color: rgb(255, 255, 255);
+}
+.explore.active {
+  color: white;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 18px;
+  transition: all 0.5s;
+  line-height: 70px;
+  width: 500px;
+  border-radius: 3px;
+  background-color: rgb(114, 137, 218);
+  transition-duration: 0.5s;
+  -webkit-transition-duration: 0.5s;
+  -moz-transition-duration: 0.5s;
+}
+
+.explore.active:hover {
+  background-color: rgb(252, 252, 252);
+  color: black;
+}
+
+@font-face {
+    font-family: octicons-link;
+    src: url(data:font/woff;charset=utf-8;base64,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) format('woff')
+}
+
+.markdown-body {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    color: #24292e;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 15px;
+    word-wrap: break-word
+}
+
+.markdown-body .pl-c {
+    color: #6a737d
+}
+
+.markdown-body .pl-c1,
+.markdown-body .pl-s .pl-v {
+    color: #005cc5
+}
+
+.markdown-body .pl-e,
+.markdown-body .pl-en {
+    color: #6f42c1
+}
+
+.markdown-body .pl-s .pl-s1,
+.markdown-body .pl-smi {
+    color: #24292e
+}
+
+.markdown-body .pl-ent {
+    color: #22863a
+}
+
+.markdown-body .pl-k {
+    color: #d73a49
+}
+
+.markdown-body .pl-pds{
+    color: #000
+}
+.markdown-body .pl-s{
+    color: #000
+}
+.markdown-body .pl-s .pl-pse .pl-s1{
+    color: #000
+}
+.markdown-body .pl-sr{
+    color: #000
+}
+.markdown-body .pl-sr .pl-cce{
+    color: #000
+}
+.markdown-body .pl-sr .pl-sra{
+    color: #000
+}
+.markdown-body .pl-sr .pl-sre {
+    color: #032f62
+}
+
+.markdown-body .pl-smw{
+    color: #000
+}
+.markdown-body .pl-v {
+    color: #e36209
+}
+
+.markdown-body .pl-bu {
+    color: #b31d28
+}
+
+.markdown-body .pl-ii {
+    color: #000000;
+    background-color: #b31d28
+}
+
+.markdown-body .pl-c2 {
+    color: #000000;
+    background-color: #d73a49
+}
+
+.markdown-body .pl-c2::before {
+    content: "^M"
+}
+
+.markdown-body .pl-sr .pl-cce {
+    font-weight: 700;
+    color: #22863a
+}
+
+.markdown-body .pl-ml {
+    color: #735c0f
+}
+
+.markdown-body .pl-mh{
+    color: #000
+}
+.markdown-body .pl-mh .pl-en{
+    color: #000
+}
+.markdown-body .pl-ms {
+    font-weight: 700;
+    color: #005cc5
+}
+
+.markdown-body .pl-mi {
+    font-style: italic;
+    color: #24292e
+}
+
+.markdown-body .pl-mb {
+    font-weight: 700;
+    color: #24292e
+}
+
+.markdown-body .pl-md {
+    color: #b31d28;
+    background-color: #ffeef0;
+    color: #000;
+}
+
+.markdown-body .pl-mi1 {
+    color: #22863a;
+    background-color: #f0fff4;
+    color: #000;
+}
+
+.markdown-body .pl-mc {
+    color: #e36209;
+    background-color: #ffebda;
+    color: #000;
+}
+
+.markdown-body .pl-mi2 {
+    color: #f6f8fa;
+    background-color: #005cc5
+}
+
+.markdown-body .pl-mdr {
+    font-weight: 700;
+    color: #6f42c1
+}
+
+.markdown-body .pl-ba {
+    color: #586069
+}
+
+.markdown-body .pl-sg {
+    color: #959da5
+}
+
+.markdown-body .pl-corl {
+    text-decoration: underline;
+    color: #032f62
+}
+
+.markdown-body .octicon {
+    display: inline-block;
+    fill: currentColor;
+    vertical-align: text-bottom
+}
+
+.markdown-body::after{
+    color: #000
+}
+.markdown-body::before {
+    display: table;
+    content: ""
+}
+
+.markdown-body a {
+    background-color: transparent;
+    color: #0366d6;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.markdown-body a:active{
+    color: #000
+}
+.markdown-body a:hover {
+    outline-width: 0
+}
+
+.markdown-body h1 {
+    margin: .67em 0
+}
+
+.markdown-body img {
+    border-style: none
+}
+
+
+.markdown-body input {
+    font: inherit;
+    margin: 0;
+    overflow: visible;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.markdown-body dl dt{
+    color: #000
+}
+.markdown-body strong{
+    color: #000
+}
+.markdown-body table th {
+    font-weight: 600
+}
+
+.markdown-body code,
+.markdown-body pre {
+    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace
+}
+
+.markdown-body [type=checkbox] {
+    box-sizing: border-box;
+    padding: 0
+}
+
+.markdown-body * {
+    box-sizing: border-box
+}
+
+.markdown-body a:hover {
+    text-decoration: underline
+}
+
+.markdown-body td{
+    color: #000
+}
+.markdown-body th {
+    padding: 0
+}
+
+.markdown-body blockquote {
+    margin: 0
+}
+
+.markdown-body ol ol{
+    color: #000
+}
+.markdown-body ul ol {
+    list-style-type: lower-roman
+}
+
+.markdown-body ol ol ol{
+    color: #000
+}
+.markdown-body ol ul ol{
+    color: #000
+}
+.markdown-body ul ol ol{
+    color: #000
+}
+.markdown-body ul ul ol {
+    list-style-type: lower-alpha
+}
+
+.markdown-body dd {
+    margin-left: 0
+}
+
+.markdown-body .pl-0 {
+    padding-left: 0!important
+}
+
+.markdown-body .pl-1 {
+    padding-left: 4px!important
+}
+
+.markdown-body .pl-2 {
+    padding-left: 8px!important
+}
+
+.markdown-body .pl-3 {
+    padding-left: 16px!important
+}
+
+.markdown-body .pl-4 {
+    padding-left: 24px!important
+}
+
+.markdown-body .pl-5 {
+    padding-left: 32px!important
+}
+
+.markdown-body .pl-6 {
+    padding-left: 40px!important
+}
+
+.markdown-body>:first-child {
+    margin-top: 0!important
+}
+
+.markdown-body>:last-child {
+    margin-bottom: 0!important
+}
+
+.markdown-body a:not([href]) {
+    color: inherit;
+    text-decoration: none
+}
+
+.markdown-body .anchor {
+    float: left;
+    padding-right: 4px;
+    margin-left: -20px;
+}
+
+.markdown-body .anchor:focus {
+    outline: 0
+}
+
+.markdown-body blockquote{
+    color: #000
+}
+.markdown-body dl{
+    color: #000
+}
+.markdown-body ol{
+    color: #000
+}
+.markdown-body p{
+    color: #000
+}
+.markdown-body pre{
+    color: #000
+}
+.markdown-body table{
+    color: #000
+}
+.markdown-body ul {
+    margin-top: 0;
+    margin-bottom: 16px
+}
+
+.markdown-body blockquote {
+    padding: 0 1em;
+    color: #6a737d;
+    border-left: .25em solid #dfe2e5
+}
+
+.markdown-body h1,
+.markdown-body h2 {
+    padding-bottom: .3em;
+    border-bottom: 1px solid #eaecef;
+    color: #000;
+}
+
+.markdown-body blockquote>:first-child {
+    margin-top: 0
+}
+
+.markdown-body blockquote>:last-child {
+    margin-bottom: 0
+}
+
+.markdown-body h1{
+    color: #000
+}
+.markdown-body h2{
+    color: #000
+}
+.markdown-body h3{
+    color: #000
+}
+.markdown-body h4{
+    color: #000
+}
+.markdown-body h5{
+    color: #000
+}
+.markdown-body h6 {
+  color: black;
+    margin-top: 24px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+.markdown-body h1 .octicon-link{
+    color: #000
+}
+.markdown-body h2 .octicon-link{
+    color: #000
+}
+.markdown-body h3 .octicon-link{
+    color: #000
+}
+.markdown-body h4 .octicon-link{
+    color: #000
+}
+.markdown-body h5 .octicon-link{
+    color: #000
+}
+.markdown-body h6 .octicon-link {
+    color: #1b1f23;
+    vertical-align: middle;
+    visibility: hidden
+}
+
+.markdown-body h1:hover .anchor{
+    color: #000
+}
+.markdown-body h2:hover .anchor{
+    color: #000
+}
+.markdown-body h3:hover .anchor{
+    color: #000
+}
+.markdown-body h4:hover .anchor{
+    color: #000
+}
+.markdown-body h5:hover .anchor{
+    color: #000
+}
+.markdown-body h6:hover .anchor {
+  color :rgb(0, 0, 0);
+  text-decoration: none
+}
+
+.markdown-body h1:hover .anchor .octicon-link{
+    color: #000
+}
+.markdown-body h2:hover .anchor .octicon-link{
+    color: #000
+}
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+    visibility: visible
+}
+
+.markdown-body h1 {
+    font-size: 2em
+}
+
+.markdown-body h2 {
+    font-size: 1.5em
+}
+
+.markdown-body h3 {
+    font-size: 1.25em
+}
+
+.markdown-body h4 {
+    font-size: 1em
+}
+
+.markdown-body h5 {
+    font-size: .875em
+}
+
+.markdown-body h6 {
+    font-size: .85em;
+    color: #6a737d
+}
+
+.markdown-body ol,
+.markdown-body ul {
+    padding-left: 2em
+}
+
+.markdown-body ol ol,
+.markdown-body ol ul,
+.markdown-body ul ol,
+.markdown-body ul ul {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+.markdown-body li {
+    word-wrap: break-all
+}
+
+.markdown-body li>p {
+    margin-top: 16px
+}
+
+.markdown-body li+li {
+    margin-top: .25em
+}
+
+.markdown-body dl {
+    padding: 0
+}
+
+.markdown-body dl dt {
+    padding: 0;
+    margin-top: 16px;
+    font-size: 1em;
+    font-style: italic
+}
+
+.markdown-body dl dd {
+    padding: 0 16px;
+    margin-bottom: 16px
+}
+
+.markdown-body table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    display: block;
+    width: 100%;
+    overflow: auto
+}
+
+.markdown-body table td,
+.markdown-body table th {
+    padding: 6px 13px;
+    border: 1px solid #dfe2e5
+}
+
+.markdown-body table tr {
+    background-color: #fff;
+    border-top: 1px solid #c6cbd1
+}
+
+.markdown-body table tr:nth-child(2n) {
+    background-color: #f6f8fa
+}
+
+.markdown-body img {
+    max-width: 100%;
+    box-sizing: content-box;
+    background-color: #fff
+}
+
+.markdown-body img[align=right] {
+    padding-left: 20px
+}
+
+.markdown-body img[align=left] {
+    padding-right: 20px
+}
+
+.markdown-body code {
+    padding: .2em .4em;
+    margin: 0;
+    font-size: 85%;
+    background-color: rgba(27, 31, 35, .05);
+    border-radius: 3px;
+    color: #000;
+}
+
+.markdown-body pre {
+    word-wrap: normal
+}
+
+.markdown-body pre>code {
+    padding: 0;
+    margin: 0;
+    font-size: 100%;
+    word-break: normal;
+    white-space: pre;
+    background: 0 0;
+    border: 0
+}
+
+.markdown-body .highlight {
+    margin-bottom: 16px
+}
+
+.markdown-body .highlight pre {
+    margin-bottom: 0;
+    word-break: normal
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+    padding: 16px;
+    overflow: auto;
+    font-size: 85%;
+    background-color: #f6f8fa;
+    border-radius: 3px;
+    color: #000;
+}
+
+.markdown-body pre code {
+    display: inline;
+    max-width: auto;
+    padding: 0;
+    margin: 0;
+    overflow: visible;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
+    color: #000;
+}
+
+.markdown-body .full-commit .btn-outline:not(:disabled):hover {
+    color: #005cc5;
+    border-color: #005cc5
+}
+
+.markdown-body kbd {
+    display: inline-block;
+    padding: 3px 5px;
+    font: 11px SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    color: #444d56;
+    vertical-align: middle;
+    background-color: #fafbfc;
+    border: 1px solid #d1d5da;
+    border-bottom-color: #c6cbd1;
+    border-radius: 3px;
+    box-shadow: inset 0 -1px 0 #c6cbd1
+}
+
+.markdown-body :checked+.radio-label {
+    position: relative;
+    z-index: 1;
+    border-color: #0366d6
+}
+
+.markdown-body .task-list-item {
+    list-style-type: none
+}
+
+.markdown-body .task-list-item+.task-list-item {
+    margin-top: 3px
+}
+
+.markdown-body .task-list-item input {
+    margin: 0 .2em .25em -1.6em;
+    vertical-align: middle
+}
+
+
+.tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.tg td {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding: 15px 7px;
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+    word-break: normal;
+    border-color: black;
+}
+
+.tg th {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    padding: 15px 7px;
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+    word-break: normal;
+    border-color: black;
+}
+
+.tg .tg-0lax {
+    text-align: left;
+    vertical-align: top
+}
+
+table {
+    float: right;
+    margin-right: 0 !important;
+    background-color: #dbdbdb;
+    color: #24292e;
+    width: 20%;
+    margin: 30px;
+    margin-top: 0;
+    border: 5px solid #dbdbdb;
+}
+
+@keyframes an5 {
+    from {
+        box-shadow: 0 0 0 #dbdbdb;
+    }
+    to {
+        box-shadow: 0 0 10px #dbdbdb;
+    }
+}
+
+@keyframes an6 {
+    from {
+        box-shadow: 0 0 10px #dbdbdb;
+    }
+    to {
+        box-shadow: 0 0 0 #dbdbdb;
+    }
+}
+
+table:not(:hover) {
+    box-shadow: 0 0 0 #dbdbdb;
+    animation: an6 0.5s;
+}
+
+table:hover {
+    animation: an5 0.5s;
+    box-shadow: 0 0 10px #dbdbdb;
+}
+
+iframe {
+    height: 400px;
+    border: 0;
+}
+  </style>
+<script>
+  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {    
+        document.getElementById("leftt2").style.display = "block";
+        document.getElementById("leftt").style.display = "none";
+        document.getElementById("brr").style.display = "none";
+        document.getElementById("leftt2").style.animation = "0.4s";
+  }else{
+    document.getElementById("leftt").style.display = "block";
+    document.getElementById("leftt2").style.display = "none";
+    document.getElementById("leftt").style.animation = "0.4s";
+  }
+  var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+if (document.body.scrollTop > 25 || document.documentElement.scrollTop > 25) {
+mybutton.style.display = "block";
+mybutton.style.animation = "fadeIn 0.4s";
+} else {
+mybutton.style.display = "none";
+mybutton.style.animation = "fadeIn 0.4s";
+}
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+document.body.scrollTop = 0;
+document.documentElement.scrollTop = 0;
+}
+</script>
+</head>
+</html>

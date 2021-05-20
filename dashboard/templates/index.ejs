@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/831283997560274986/840699649223426148/startup3.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>SpaceBotList</title>
+</head>
+<body>
+<%- include("partials/header", { bot, user, path, }) %>
+<br>
+<center>
+  <% if (alert) { %>
+    <div style="background-color: rgb(151, 255, 177);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 20px; padding: 6px">
+      <b style="color: rgb(70, 150, 70);"><%= alert %></b>
+    </div>
+  <% }else if(error){ %>
+    <div style="background-color: rgb(255, 87, 87);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 20px; padding: 6px">
+      <b style="color: white;"><%= error %></b>
+    </div>
+    <% } %>
+  </center>
+<br>
+<center>
+  <img src="https://cdn.discordapp.com/attachments/831283997560274986/840697163105042472/startup.png" style="width: 200px;">
+<h3 style="color: white;">Start making your new discord server by choosing one of our cool bots!</h3>
+<div class="container">
+  <form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+<input class="search" name="search" placeholder="i.e Space Manager" required></input>
+<button name="searchbutton" value="1" class="button custom" style="padding: 8px; width: 100px; color: black;"><i class="fa fa-search"></i> Search</button>
+</form>
+</div>
+</center>
+<br>
+<div style="margin-left: 100px;">
+  <h2 style="color:white; margin-left: 100px;"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+  Top Voted Bots!</h2>
+</div>
+<div class="container">
+  <% if(bots.length === 0) { %>
+    <p style="color: white;">No bots for now</p>
+    <% }else{ %>
+<% for (i = 0; i < bots2.length; i++) { %>
+  <% bot.users.fetch(bots2[i].botid) %>
+    <% } %>
+    <% for (i = 0; i < 8; i++) { %>
+  <div class="botcard">
+    <% let botname = "Coming Soon"; %>
+    <% let botavatar = "https://maxcdn.icons8.com/Share/icon/Logos/discord_logo1600.png"; %>
+    <% let botvotes = "10000000"; %>
+    <% let botservers = "0"; %>
+    <% let botshards = "0"; %>
+    <% let presence = ""; %>
+    <% let botshort = "Coming soon bots in verification!"; %>
+    <% let botinvite = "https://discord.gg/qjGYnh8"; %>
+    <% let botid = "000000000000000"; %>
+    <% if(bots[i]){ %>
+      <% if(bots[i].votes){ %>
+        <% botvotes = bots[i].votes %>
+        <% } %>
+        <% if(bots[i].servers){ %>
+          <% botservers = bots[i].servers %>
+          <% } %>
+          <% if(bots[i].shards){ %>
+            <% botshards = bots[i].shards %>
+            <% } %>
+        <% if(bots[i].short){ %>
+          <% botshort = bots[i].short %>
+          <% } %>
+          <% if(bots[i].invite){ %>
+            <% botinvite = bots[i].invite %>
+            <% } %>
+            <% if(bots[i].botid){ %>
+              <% botid = bots[i].botid %>
+              <% } %>
+    <% if(bot.users.cache.get(bots[i].botid)) { %>
+      <% botname = bot.users.cache.get(bots[i].botid).username %>
+      <% botavatar = bot.users.cache.get(bots[i].botid).displayAvatarURL()  %>
+      <% presence = bot.users.cache.get(bots[i].botid).presence.status %>
+      <% }else{ %>
+        <% botavatar = bots[i].avatar %>
+      <% botname = "Error fetching" %>
+      <% } %>
+      <% } %>
+      <% if(botname.length > 22){ %>
+        <% botname = botname.slice(0 , 19) + "..." %>
+      <% } %>
+        <% if(presence == "online"){ %>
+          <img src="<%= botavatar %>" style="width: 120px; height: 120px; border-radius: 70px; border-style: solid; border-color: greenyellow;"> 
+        <% }else if(presence== "idle"){ %>
+          <img src="<%= botavatar %>" style="width: 120px; height: 120px; border-radius: 70px; border-style: solid; border-color: rgb(255, 189, 47);"> 
+        <% }else if(presence == "dnd"){ %> 
+          <img src="<%= botavatar %>" style="width: 120px; height: 120px; border-radius: 70px; border-style: solid; border-color: rgb(255, 47, 47);"> 
+        <% }else{ %> 
+          <img src="<%= botavatar %>" style="width: 120px; height: 120px; border-radius: 70px; border-style: solid; border-color: rgb(207, 207, 207);"> 
+        <% } %>
+      <div class="container">
+      <b style="background-color: rgb(114, 137, 218);  margin: 10px; height: 30px; border-radius: 10px; padding: 5px;"><i class="fa fa-check"></i> <%= botvotes %></b>
+      <b style="background-color: rgb(114, 137, 218);  margin: 10px; height: 30px; border-radius: 10px; padding: 5px;"><i class="fa fa-server"></i> <%= botservers %></b>
+      <b style="background-color: rgb(114, 137, 218);  margin: 10px; height: 30px; border-radius: 10px; padding: 5px;"><i class="fa fa-sitemap"></i> <%= botshards %></b>
+  </div>
+    <h2><%= botname %></h2>
+    <p style="word-wrap:break-word;"><%= botshort %></p>
+<% bots[i].tags.split(", ").map(x => { %>
+  <b style="color: white;  background-color: rgb(114, 137, 218); border-radius: 3px; padding: 3px; font-size: 12px;"><%= x %></b> 
+  <% }) %>
+  <br>
+  <br>
+    <a href="<%= botinvite %>" class="viewbutton" ><i class="fa fa-plus"></i> Invite</a>
+    <a href="/bots/<%= botid %>" class="viewbutton" ><i class="fa fa-eye"></i> View</a>
+  </div>
+<% } %>  
+      <% } %>
+</div>
+
+<hr style="margin-left: 200px; margin-right: 200px;">
+<div style="margin-left: 100px;">
+<h2 style="color:white; margin-left: 100px;"><i class="fa fa-clock-o" aria-hidden="true"></i> New apporved Bots!</h2>
+</div>
+<div class="container">
+  <% if(bots.length === 0) { %>
+    <p style="color: white;">No bots for now</p>
+    <% }else{ %>
+<% for (i = 0; i < bots2.length; i++) { %>
+  <% bot.users.fetch(bots2[i].botid) %>
+    <% } %>
+    <% for (i = 0; i < 8; i++) { %>
+  <div class="botcard">
+    <% let botname2 = "Coming Soon"; %>
+    <% let botavatar2 = "https://maxcdn.icons8.com/Share/icon/Logos/discord_logo1600.png"; %>
+    <% let botvotes2 = "0"; %>
+    <% let botservers2 = "0"; %>
+    <% let botshards2 = "0"; %>
+    <% let presence2 = ""; %>
+    <% let botshort2 = "Coming soon bots in verification!"; %>
+    <% let botinvite2 = "https://discord.gg/qjGYnh8"; %>
+    <% let botid2 = "000000000000000"; %>
+    <% if(bots2[i]){ %>
+      <% if(bots2[i].votes){ %>
+        <% botvotes2 = bots2[i].votes %>
+        <% } %>
+        <% if(bots2[i].servers){ %>
+          <% botservers2 = bots2[i].servers %>
+          <% } %>
+          <% if(bots2[i].shards){ %>
+            <% botshards2 = bots2[i].shards %>
+            <% } %>
+        <% if(bots2[i].short){ %>
+          <% botshort2 = bots2[i].short %>
+          <% } %>
+          <% if(bots2[i].invite){ %>
+            <% botinvite2 = bots2[i].invite %>
+            <% } %>
+            <% if(bots2[i].botid){ %>
+              <% botid2 = bots2[i].botid %>
+              <% } %>
+    <% if(bot.users.cache.get(bots2[i].botid)) { %>
+      <% botname2 = bot.users.cache.get(bots2[i].botid).username %>
+      <% botavatar2 = bot.users.cache.get(bots2[i].botid).displayAvatarURL()  %>
+      <% presence2 = bot.users.cache.get(bots2[i].botid).presence.status %>
+      <% }else{ %>
+        <% botavatar2 = bots2[i].avatar %>
+      <% botname2 = "Error fetching" %>
+      <% } %>
+      <% } %>
+      <% if(botname2.length > 22){ %>
+        <% botname2 = botname2.slice(0 , 19) + "..." %>
+      <% } %>
+      <% if(presence2 == "online"){ %>
+        <img src="<%= botavatar2 %>" style="width: 120px; height: 120px; border-radius: 70px; border-style: solid; border-color: greenyellow;"> 
+      <% }else if(presence2== "idle"){ %>
+        <img src="<%= botavatar2 %>" style="width: 120px; height: 120px; border-radius: 70px; border-style: solid; border-color: rgb(255, 189, 47);"> 
+      <% }else if(presence2 == "dnd"){ %> 
+        <img src="<%= botavatar2 %>" style="width: 120px; height: 120px; border-radius: 70px; border-style: solid; border-color: rgb(255, 47, 47);"> 
+      <% }else{ %> 
+        <img src="<%= botavatar2 %>" style="width: 120px; height: 120px; border-radius: 70px; border-style: solid; border-color: rgb(207, 207, 207);"> 
+      <% } %>
+      <div class="container">
+      <b style="background-color: rgb(114, 137, 218);  margin: 10px; height: 30px; border-radius: 10px; padding: 5px;"><i class="fa fa-check"></i> <%= botvotes2 %></b>
+      <b style="background-color: rgb(114, 137, 218);  margin: 10px; height: 30px; border-radius: 10px; padding: 5px;"><i class="fa fa-server"></i> <%= botservers2 %></b>
+      <b style="background-color: rgb(114, 137, 218);  margin: 10px; height: 30px; border-radius: 10px; padding: 5px;"><i class="fa fa-sitemap"></i> <%= botshards2 %></b>
+  </div>
+    <h2><%= botname2 %></h2>
+    <p style="word-wrap:break-word;"><%= botshort2 %></p>
+    <% bots[i].tags.split(", ").map(x => { %>
+  <b style="color: white;  background-color: rgb(114, 137, 218); border-radius: 3px; padding: 3px; font-size: 12px;"><%= x %></b> 
+  <% }) %>
+      <br>
+      <br>
+    <a href="<%= botinvite2 %>" class="viewbutton" ><i class="fa fa-plus"></i> Invite</a>
+    <a href="/bots/<%= botid2 %>" class="viewbutton" ><i class="fa fa-eye"></i> View</a>
+  </div>
+<% } %>  
+      <% } %>
+
+</div>
+<center
+<h3 style="color:white; 200px; margin-middle: width:700px">
+<a  href="/bots" class="explore"><i class="fa fa-window-restore"></i> Explore more bots!</a>
+</h3>
+</center>
+<center>
+<br>
+<br>
+</center>
+<br>
+<br>
+<%- include("partials/footer") %>
+</body>
+</html>

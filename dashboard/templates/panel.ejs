@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/831283997560274986/840699649223426148/startup3.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>SpaceBotList - Staff Panel</title>
+</head>
+<body>
+<%- include("partials/header", { bot, user, path, }) %>
+<br>
+<center>
+    <% if (alert) { %>
+      <div style="background-color: rgb(151, 255, 177);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 20px; padding: 6px">
+        <b style="color: rgb(70, 150, 70);"><%= alert %></b>
+      </div>
+    <% }else if(error){ %>
+      <div style="background-color: rgb(255, 87, 87);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 20px; padding: 6px">
+        <b style="color: white;"><%= error %></b>
+      </div>
+      <% } %>
+    </center>
+      <br>
+ <h1 style="color:white; margin-left: 100px;"><i class="fa fa-window-restore"></i>Pending verification bots</h1>
+<% if(bots.length === 0) { %>
+    <center><h2 style="color: white"><i class="fa fa-search"></i> No bot's at queue</h2></center>
+<% }else{ %>
+<div class="container">
+    <% for(i = 0; i < bots.length; i++){ %>
+        <% bot.users.fetch(bots[i].botid) %>
+    <% } %>
+        <% for(i = 0; i < bots.length; i++){ %>
+            <% let botname = "Coming Soon"; %>
+            <% let botavatar = "https://maxcdn.icons8.com/Share/icon/Logos/discord_logo1600.png"; %>
+            <% let botvotes = "0"; %>
+            <% let botshort = "Coming soon bots in verification!"; %>
+            <% let botinvite = "https://discord.gg/qjGYnh8"; %>
+            <% let botid = "000000000000000"; %>
+            <% if(bots[i]){ %>
+              <% if(bots[i].votes){ %>
+                <% botvotes = bots[i].votes %>
+                <% } %>
+                <% if(bots[i].short){ %>
+                  <% botshort = bots[i].short %>
+                  <% } %>
+                  <% if(bots[i].invite){ %>
+                    <% botinvite = bots[i].invite %>
+                    <% } %>
+                    <% if(bots[i].botid){ %>
+                      <% botid = bots[i].botid %>
+                      <% } %>
+            <% if(bot.users.cache.get(bots[i].botid)) { %>
+              <% botname = bot.users.cache.get(bots[i].botid).username %>
+              <% botavatar = bot.users.cache.get(bots[i].botid).displayAvatarURL()  %>
+              <% }else{ %>
+                <% botavatar = bots[i].avatar %>
+              <% botname = "Error fetching" %>
+              <% } %>
+              <% } %>
+            <div class="pendingcard">
+            <img src="<%= botavatar %>" style="width: 80px; height: 80px; border-radius: 40px;">
+            <b style="color: white; font-size: 25px;"><%= botname %></b>
+            <div class="container">
+                <form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+            <button name="accept" class="button" style="width: 120px;" value="<%= bots[i].botid %>">Accept</button>
+            <button name="reject" class="button" style="width: 120px;" value="<%= bots[i].botid %>">Reject</button>
+        </div>
+        <div class="container">
+            <a href="https://discord.com/oauth2/authorize?client_id=<%= bots[i].botid %>&permissions=0&scope=bot" target="_blank" class="button" style="width: 120px;" value="<%= bots[i].botid %>">Invite Bot</a>
+            <a href="/bots/<%= botid %>" class="button" style="width: 120px;" target="_blank" value="<%= bots[i].botid %>">Bot Page</a>
+        </div>
+            <p>Write reason for rejections or accepetion</p>
+            <textarea class="input" style="width: 400px; height: 180px;" name="reason" placeholder="i.e Your bot was offline when we tried review it!" required></textarea>
+    </form>
+        </div>
+
+            <% } %>
+</div>
+<% } %>
+<hr style="margin-left: 200px; margin-right: 200px;">
+<center>
+ <form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+<p style="color: white;">Write Bot ID if you want to delete it</p>
+<input class="w3-input w3-border"  style="border-radius: 5px; width:300px" maxlength="18" type="text" name="clientid" placeholder="i.e 759457997259724" required></input>
+<br>
+<p style="color: white;">Write a reason for delete</p>
+<textarea class="input" style="width: 400px; height: 180px;" name="deletereason" placeholder="i.e Bot mass dm people after we verify it!" required></textarea>
+<br>
+<button name="checkingdelete" value="hmmmm" class="button custom" style="width: 120px;">Delete Bot</button>
+ </form>
+</center>
+<hr style="margin-left: 200px; margin-right: 200px;">
+<center>
+<div class="container">
+  <% if(reportbug.length === 0){ %>
+    <b style="font-size: 30px; color:white;"><i class="fa fa-wrench"></i> No bug reports</b><br>
+    <% }else{ %>
+  <% reportbug.forEach(reportbug => { %>
+    <div style=" margin-right: 100px; margin-left: 100px; background-color: rgb(235, 235, 235); border-radius: 5px; padding: 10px; margin: 15px">
+      <div style="margin-right: 50px; margin-left: 50px;">
+      <br>
+      <b style="color: black;">ID: <%= reportbug.userID %></b>
+      <p>___________________________________________________________________________________________________________</p>
+        <p style="font-size: 20px; color: black;"><%= reportbug.bug %></p>
+      <br>
+      <form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+      <button name="acceptbug" value="<%= reportbug.userID %>" class="button custom" style="width: 130px;">Approve Bug</button>
+      </form>
+      </div>
+      </div>
+    <% }) %>
+    <% } %>
+  </div>
+  </form>
+  </center>
+<%- include("partials/footer") %>
+</body>
+</html>

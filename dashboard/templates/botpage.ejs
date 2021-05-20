@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <% bot.users.fetch(bots.botid) %>
+  <% bot.users.fetch(bots.owner) %>
+  <% let botname = ""; %>
+  <% let botavatar = ""; %>
+  <% let ownername = ""; %>
+  <% let owneravatar = ""; %>
+  <% let presence = ""; %>
+  <% if(bot.users.cache.get(bots.botid)) { %>
+    <% botname = bot.users.cache.get(bots.botid).username %>
+   <% botavatar = bot.users.cache.get(bots.botid).displayAvatarURL()  %>
+   <% presence = bot.users.cache.get(bots.botid).presence.status %>
+   <% }else{ %> 
+    <% botavatar = bots.avatar  %>
+    <% botname = "Error fetching"  %>
+   <% } %>
+   <% if(bot.users.cache.get(bots.owner)) { %>
+    <% ownername = bot.users.cache.get(bots.owner).username %>
+   <% owneravatar = bot.users.cache.get(bots.owner).displayAvatarURL()  %>
+   <% }else{ %> 
+    <% owneravatar = bots.avatar  %>
+    <% ownername = "Error fetching"  %>
+   <% } %>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/831283997560274986/840699649223426148/startup3.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <title>SpaceBotList - <%= botname %></title>
+</head>
+<body>
+  <center>
+    <%- include("partials/header", { bot, user, path, }) %>
+    <br>
+    <% if (alert) { %>
+      <div style="background-color: rgb(151, 255, 177);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 20px; padding: 6px">
+        <b style="color: rgb(70, 150, 70);"><%= alert %></b>
+      </div>
+    <% }else if(error){ %>
+      <div style="background-color: rgb(255, 87, 87);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 20px; padding: 6px">
+        <b style="color: white;"><%= error %></b>
+      </div>
+      <% } %>
+      <br>
+      <% if(bots){ %>
+      <% if(bots.status == "pending"){ %>
+        <div style="background-color: rgb(255, 87, 87); border: solid; border-color: black; width: 800px; height: 40px; border-radius: 20px; padding: 6px; animation: fadeIn 0.4s; transition: 0.4s;">
+          <b style="color: white;">Bot is not approved, So take care we are not responsible if something bad happend to your server</b>
+        </div>
+      <% } %>
+      <% } %>
+      <br>
+    </center>
+    <br>
+    <br>
+<center>
+<img class="boticon" src="<%= botavatar %>">
+<div class="container">
+<h1 style="color: white; font-size: 60px;"><%= botname %></h1>
+<% if(presence == "online"){ %>
+  <svg style="width:70px;height:70px" viewBox="0 0 24 24">
+    <path fill="currentColor" style="color: greenyellow; font-size: 20px;" d="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z" />
+  </svg>
+<% }else if(presence== "idle"){ %>
+  <svg style="width:70px;height:70px" viewBox="0 0 24 24">
+    <path fill="currentColor" style="color: rgb(255, 189, 47);" d="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z" />
+  </svg>
+<% }else if(presence == "dnd"){ %> 
+  <svg style="width:70px;height:70px" viewBox="0 0 24 24">
+    <path fill="currentColor" style="color: rgb(255, 47, 47);" d="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z" />
+  </svg>
+<% }else{ %> 
+  <svg style="width:70px;height:70px" viewBox="0 0 24 24">
+    <path fill="currentColor" style="color: rgb(189, 189, 189);" d="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z" />
+  </svg>
+<% } %>
+</div>
+
+  <b style="color: white;">Prefix: <%= bots.prefix %></b>
+<div class="container">
+  <form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+   <button name="vote" value="1" class="viewbutton" style="width: 110px; color: white;"><i class="fa fa-level-up"></i> Vote </button>
+  <a style="color: white;" href="<%= bots.website %>" target="_blank" class="viewbutton" ><i class="fa fa-window-maximize"></i> Website</a>
+  <a style="color: white;" href="<%= bots.serverlink %>" target="_blank" class="viewbutton" ><i class="fa fa-users"></i> Server</a>
+  <a style="color: white;" href="<%= bots.invite %>" target="_blank" class="viewbutton" ><i class="fa fa-plus"></i> Invite</a>
+  <a style="color: white;" href="<%= bots.donate %>" target="_blank" class="viewbutton" ><i class="fa fa-credit-card-alt"></i> Donate</a>
+<% if(user){ %>
+  <% if(user.id == bots.owner){ %> 
+  <a style="color: white;" href="/bots/<%= bots.botid %>/edit" class="viewbutton" ><i class="fa fa-pencil"></i> Edit</a>
+  <% } %>
+  <% } %>
+</form>
+</div>
+
+<% if(user){ %>
+  <% if(user.id == bots.owner){ %> 
+    <form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+  <button name="token" value="1hhh" class="button custom" style="width: 200px; color: black;"><i class="fa fa-eye"></i> Api Token</button>
+  <button name="newtoken" value="1" class="button custom" style="width: 200px; color: black;"><i class="fa fa-gear"></i> Generate Api Token</button>
+</form>
+<form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+<button name="permdelete" value="1" style="background-color: rgb(255, 62, 62); width: 220px; " class="button custom"><i class="fa fa-trash"></i> Permanent Delete Bot</button>
+</form>
+<% } %>
+  <% } %>
+  <br>
+  <img src="<%= owneravatar %>" style="width: 30px; height: 30px; border-radius: 30px;">
+  <b style="color: white;"><%= ownername %></b>
+</center>
+<hr style="margin-left: 100px; margin-right: 100px;">
+<div style="margin-right: 150px; margin-left: 150px;">
+
+<b style="color: white; font-size: 25px"><i class="fa fa-database"></i> Stats:</b>
+<b style="color: white; background-color: rgb(124, 122, 122); border-radius: 5px; padding: 3px;"><i class="fa fa-check"></i> Votes: <%= bots.votes %></b>
+<b style="color: white; background-color: rgb(124, 122, 122); border-radius: 5px; padding: 3px;"><i class="fa fa-server"></i> Servers: <%= bots.servers %></b>
+<b style="color: white; background-color: rgb(124, 122, 122); border-radius: 5px; padding: 3px;"><i class="fa fa-sitemap"></i> Shards: <%= bots.shards %></b>
+<br>
+<br>
+<b style="color: white; font-size: 25px"><i class="fa fa-tags"></i> Tags:</b>
+<% bots.tags.split(", ").map(x => { %>
+<b style="color: white; background-color: rgb(124, 122, 122); border-radius: 3px; padding: 3px; font-size: 12px;"><%= x %></b> 
+<% }) %>
+  <br>
+  <br>
+<b style="color: white; font-size: 25px"><i class="fa fa-wrench"></i>  Library:</b>
+  <b style="color: white; background-color: rgb(124, 122, 122);  border-radius: 5px; padding: 5px;"><%= bots.library %></b>
+</div>
+<hr style="margin-left: 100px; margin-right: 100px;">
+<div style=" margin-right: 100px; margin-left: 100px; background-color: rgb(32, 34, 37); border-radius: 5px; padding: 10px;">
+<div style="margin-right: 50px; margin-left: 50px;">
+<br>
+<p style="color: white;"><%= bots.short %></p>
+<p>___________________________________________________________________________________________________________</p>
+  <p <span  class="<%= isURL ? '' : 'markdown-body ' %>" style="color: white; font-size: 20px;">   <%- desc  %>   </p> </span>
+<br>
+</div>
+</div>
+<%- include("partials/footer") %>
+</body>
+</html>

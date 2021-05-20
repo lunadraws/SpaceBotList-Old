@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/831283997560274986/840699649223426148/startup3.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>SpaceBotList - Resubmit Bot</title>
+</head>
+<body>
+<%- include("partials/header", { bot, user, path, }) %>
+<br>
+<br>
+<center>
+    <% if (alert) { %>
+      <div style="background-color: rgb(151, 255, 177);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 20px; padding: 6px">
+        <b style="color: rgb(70, 150, 70);"><%= alert %></b>
+      </div>
+    <% }else if(error){ %>
+      <div style="background-color: rgb(255, 87, 87);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 20px; padding: 6px">
+        <b style="color: white;"><%= error %></b>
+      </div>
+      <% } %>
+    </center>
+      <br>
+<center>
+    <form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+<div class="bigbox">
+    <center><h1><strong><i class="fa fa-plus"></i> Resubmit Bot</strong></h1></center>
+    <div style="margin-left: 50px;">
+    <hr style="margin-right: 50px;">
+    <h3>ClientID <code style="color: red;">*<code></h3> <p>Your bot client id!</p>
+        <input style="color: grey; border-color: white;" name="clientid" class="addinput" type="text" value="<%= bots.botid %>" readonly></input>
+    <h3>Prefix <code style="color: red;">*<code></h3> <p>your bot prefix which comes before any command!</p>
+        <input name="prefix" class="addinput" type="text" maxlength="20" value="<%= bots.prefix %>" required></input>
+    <h3>Library <code style="color: red;">*<code></h3> <p>what language your bot is coded with!</p>
+        <select class="select" name="library" id="library" required>
+        <option value="<%= bots.library %>"><%= bots.library %></option>
+        <option value="discord.js">discord.js</option>
+        <option value="discord.py">discord.py</option>
+        <option value="discord4j">discord4j</option>
+        <option value="discordgo">discordgo</option>
+        <option value="restcord">restcord</option>
+        <option value="disco">disco</option>
+        <option value="jda">jda</option>
+        <option value="javacord">javacord</option>
+        <option value="eris">eris</option>
+        </select>
+        <h3>Tags <code style="color: red;">*<code></h3> <p>Ctrl + Click to select multiple tags!, Max tags is 4.</p>
+                <select name="tags" class="select tags" size="4" required multiple>
+                      <% if(bots.tags.includes("Moderation")){ %>
+                      <option value="Moderation" selected>Moderation</option>
+                      <% }else{ %>
+                      <option value="Moderation" >Moderation</option>
+                              <% } %>
+                      <% if(bots.tags.includes("Economy")){ %>
+                      <option value="Economy" selected>Economy</option>
+                      <% }else{ %>
+                      <option value="Economy" >Economy</option>
+                              <% } %>
+                      <% if(bots.tags.includes("Logging")){ %>
+                      <option value="Logging" selected>Logging</option>
+                      <% }else{ %>
+                      <option value="Logging" >Logging</option>
+                              <% } %>
+                      <% if(bots.tags.includes("Role Management")){ %>
+                      <option value="Role Management" selected>Role Management</option>
+                      <% }else{ %>
+                      <option value="Role Management" >Role Management</option>
+                              <% } %>
+                      <% if(bots.tags.includes("Fun")){ %>
+                      <option value="Fun" selected>Fun</option>
+                      <% }else{ %>
+                      <option value="Fun" >Fun</option>
+                              <% } %>
+                      <% if(bots.tags.includes("Leveling")){ %>
+                      <option value="Leveling" selected>Leveling</option>
+                      <% }else{ %>
+                      <option value="Leveling" >Leveling</option>
+                              <% } %>
+                     <% if(bots.tags.includes("Music")){ %>
+                      <option value="Music" selected>Music</option>
+                      <% }else{ %>
+                      <option value="Music" >Music</option>
+                              <% } %>
+                      <% if(bots.tags.includes("Role Play")){ %>
+                      <option value="Role Play" selected>Role Play</option>
+                      <% }else{ %>
+                      <option value="Role Play" >Role Play</option>
+                              <% } %>
+                      <% if(bots.tags.includes("Utility")){ %>
+                      <option value="Utility" selected>Utility</option>
+                      <% }else{ %>
+                      <option value="Utility" >Utility</option>
+                              <% } %>
+                      <% if(bots.tags.includes("Games")){ %>
+                      <option value="Games" selected>Games</option>
+                      <% }else{ %>
+                      <option value="Games" >Games</option>
+                               <% } %>     
+                      <% if(bots.tags.includes("Web Dashboard")){ %>
+                      <option value="Web Dashboard" selected>Web Dashboard</option>
+                      <% }else{ %>
+                      <option value="Web Dashboard" >Web Dashboard</option>
+                              <% } %>      
+                      <% if(bots.tags.includes("NSFW")){ %>
+                      <option value="NSFW" selected>NSFW</option>
+                      <% }else{ %>
+                      <option value="NSFW" >NSFW</option>
+                              <% } %>      
+                     <% if(bots.tags.includes("Social")){ %>
+                      <option value="Social" selected>Social</option>
+                      <% }else{ %>
+                      <option value="Social" >Social</option>
+                              <% } %>         
+                      <% if(bots.tags.includes("Anime")){ %>
+                      <option value="Anime" selected>Anime</option>
+                      <% }else{ %>
+                      <option value="Anime" >Anime</option>
+                              <% } %>         
+                      <% if(bots.tags.includes("Statictics")){ %>
+                      <option value="Statictics" selected>Statictics</option>
+                      <% }else{ %>
+                      <option value="Statictics" >Statictics</option>
+                              <% } %>   
+                      <% if(bots.tags.includes("Triva")){ %>
+                      <option value="Triva" selected>Triva</option>
+                      <% }else{ %>
+                      <option value="Triva" >Triva</option>
+                              <% } %>   
+                      <% if(bots.tags.includes("Quiz")){ %>
+                      <option value="Quiz" selected>Quiz</option>
+                      <% }else{ %>
+                      <option value="Quiz" >Quiz</option>
+                              <% } %>  
+                      <% if(bots.tags.includes("Configuration")){ %>
+                      <option value="Configuration" selected>Configuration</option>
+                      <% }else{ %>
+                      <option value="Configuration" >Configuration</option>
+                              <% } %>             
+                </select>
+    <h3>Support Server Invite <code style="color: red;">*<code></h3> <p>your bot main support server!</p>
+            <input name="serverinvite" class="addinput" type="text" value="<%= bots.serverlink %>" required></input>
+    <h3>Website</h3><p>your bot website!</p>
+            <input name="website" class="addinput" type="text" value="<%= bots.website %>"></input>
+    <h3>Donate Url</h3><p>your donate url site!</p>
+            <input name="donateurl" class="addinput" type="text" value="<%= bots.donate %>"></input>
+    <h3>Invite Url</h3><p>your custom invite url without admin permissions, if you leave empty we will generate one!</p>
+            <input name="botinvite" class="addinput" type="text" value="<%= bots.invite %>"></input>
+    <h3>Short Description <code style="color: red;">*</code></h3><p>Brief shot desc in less than 50 characters</p>
+            <input name="shortdesc" class="addinput" maxlength="50" type="text" value="<%= bots.short %>" required></input>
+    <h3>Long Description <code style="color: red;">*</code></h3><p>Support's MarkDown/ can't be less than 100 letter</p>
+            <textarea class="input" type="text" name="longdesc" style="width: 800px; height: 250px;" placeholder="i.e My bot is multi purpose with the following features..." required><%= bots.long %></textarea>
+            <br>
+           <input style="width:170px" class="button" type="submit"></input>
+    </form>
+</div>
+</div>
+</center>
+<br>
+<%- include("partials/footer") %>
+</body>
+</html>

@@ -1,0 +1,14 @@
+exports.port=process.env.PORT || 8080
+exports.token=process.env.TOKEN
+exports.domain="https://www.spacebotlist.xyz"
+exports.clientSecret=process.env.clientsecret
+exports.id="800050702768537601"
+exports.mongo=process.env.MONGO
+exports.owners=["715491864739840063", "831181411448651796", "776509456620060672", "594504468931018752", "384319940993482753", "814226043924643880", "836195034935328768"]
+exports.botlogs=process.env.botlogs
+exports.votelogs=process.env.votelogs
+exports.guildid=process.env.guildid
+exports.staff=process.env.staff
+exports.verifiedbots=process.env.verifiedbots
+exports.verifieddevs=process.env.verifieddevs
+exports.pendingbots=process.env.pendingbots

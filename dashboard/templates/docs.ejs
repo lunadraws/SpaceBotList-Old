@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/831283997560274986/840699649223426148/startup3.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <title>SpaceBotList -  Api Docs</title>
+</head>
+<body>
+<%- include("partials/header", { bot, user, path, }) %>
+<br>
+<center>
+<div class="docsbox">
+    <div style="margin-left: 50px;">
+    <center style="margin-right: 50px;">
+<h1><i class="fa fa-book"></i> Api Docs <b style="color: white; background-color: rgb(64, 149, 247);  border-radius: 5px; padding: 3px; font-size: 16px;">POST</b></h1>
+<hr style="margin-left: 50px; margin-right: 100px;">
+</center>
+
+
+<b style="color: white;">Domain: <code>https://www.spacebotlist.xyz/api/v1/bot/:botid</code></b>
+<br>
+
+<h2>Installation</h2>
+<b style="color: white;"><code>npm install spacebotlist.js --save</code>
+<hr style="color: white; margin-left: 50px; margin-right: 100px;">
+<h2>Posting Servers Count & Shards Count</h2>
+
+<code>You can post once every 5 minutes <b style="color: white">(Rate Limit)</b></code>
+
+<hr style="margin-left: 50px; margin-right: 100px;">
+<h2>Domain Parameters</h2>
+
+<code>botid | Your discord bot id <b style="color: white">(Required Parameter)</b></code>
+
+<hr style="margin-left: 50px; margin-right: 100px;">
+
+<h2>Headers</h2>
+<code>Content-Type: application/json</code>
+<br>
+<code>Authorization: Api Token <b style="color: white">(Required Parameter)</b></code>
+
+<hr style="margin-left: 50px; margin-right: 100px;">
+<h2>Body</h2>
+<code>Servers Count | server_count <b style="color: white">(Required Parameter)</b></code>
+<br>
+<code>Shards Count | shard_count</code>
+<hr style="margin-left: 50px; margin-right: 100px;">
+
+
+<h2>Response</h2>
+<b>[ Error ] 429 : [TBL] (429): Your are being ratelimited, 1 request per 5 mins.</b>
+<br>
+<b>[ Error ] 404 : [TBL] (404): Can't find server_count.</b>
+<br>
+<b>[ Error ] 404 : [TBL] (404): Authorization header not found.</b>
+<br>
+<b>[ Error ] 400 : [TBL] (400): server_count not integer.</b>
+<br>
+<b>[ Error ] 404 : [TBL] (404): Bot not found!</b>
+<br>
+<b>[ Error ] 400 : [TBL] (400): Incorrect authorization token.</b>
+<br>
+<b>[ Error ] 404 : [TBL] (404): Go generate auth token for your bot!</b>
+<br>
+<b>[ Error ] 400 : [TBL] (400): shard_count not integer.</b>
+<br>
+<b>[ Success ] 200 : [TBL] (200): Your Stats Has Been Posted.</b>
+<br>
+<hr style="margin-left: 50px; margin-right: 100px;">
+<center style="margin-right: 50px;"><h1>API Wrapper <b style="color: white; background-color: rgb(64, 149, 247);  border-radius: 5px; padding: 3px; font-size: 16px;">PACKAGE</b></h1></center>
+<hr style="margin-left: 50px; margin-right: 100px;">
+<b style="font-size: 20px;">
+    Maintainer: Dexter
+    <br>
+    Package Name: spacebotlist.js
+    <br>
+    Link: <a target="_blank" style="text-decoration: none;" href="https://www.npmjs.com/package/spacebotlist.js" style="color: white">spacebotlist.js<a>
+</b>
+</div>
+</div>
+</center>
+<br>
+<%- include("partials/footer") %>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/831283997560274986/840699649223426148/startup3.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>SpaceBotList - Report Bug</title>
+</head>
+<body>
+<%- include("partials/header", { bot, user, path, }) %>
+<form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+<center><h1 style="color: white;">Report a bug</h1></center>
+<br>
+<center>
+    <% if (alert) { %>
+      <div style="background-color: rgb(151, 255, 177);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 20px; padding: 6px">
+        <b style="color: rgb(70, 150, 70);"><%= alert %></b>
+      </div>
+    <% }else if(error){ %>
+      <div style="background-color: rgb(255, 87, 87);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 20px; padding: 6px">
+        <b style="color: white;"><%= error %></b>
+      </div>
+      <% } %>
+    </center>
+      <br>
+<center><textarea class="input" maxlength="500" type="text" name="reportbug" style="width: 600px; height: 150px;" placeholder="i.e i found that dashboard button not redirecting"></textarea><br><br></center>
+<center><button style="width:170px" class="button" type="submit">Report Bug</button></center>
+</form>
+<br> 
+<br> 
+<br> 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<%- include("partials/footer") %>
+</body>
+</html>

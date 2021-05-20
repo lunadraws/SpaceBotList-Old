@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="shortcut icon" href="https://cdn.discordapp.com/attachments/831283997560274986/840699649223426148/startup3.png" style="border-radius: 80px;" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title><%= user.username %> - SpaceBotList</title>
+</head>
+<body>
+  <%- include("partials/header", { bot, user, path, }) %>
+  <br>
+<center>
+    <% if (alert) { %>
+      <div style="background-color: rgb(151, 255, 177);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 20px; padding: 6px">
+        <b style="color: rgb(70, 150, 70);"><%= alert %></b>
+      </div>
+    <% }else if(error){ %>
+      <div style="background-color: rgb(255, 87, 87);  border: solid; border-color: black; width: 800px; height: 40px; border-radius: 20px; padding: 6px">
+        <b style="color: white;"><%= error %></b>
+      </div>
+      <% } %>
+    </center>
+      <br>
+<br>
+<% let avatar = "" %>
+<%  avatar = !user.avatar ? "https://maxcdn.icons8.com/Share/icon/Logos/discord_logo1600.png" : `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256` %>
+<center>
+    <img src="<%= avatar %>" style="border-radius: 50px;" width="120px" height="120px" >
+    <br>
+    <b style="color: white; font-size: 50px;"><%= user.username %> Profile</b>
+    <br>
+    <% if(profile){ %>
+      <% if(!profile.bio){ %>
+        <h2 style="color: white;">I am a very mysterious person!</h2>
+          <% }else if(profile.bio){ %>
+            <h2 style="color: white;"><%= profile.bio %></h2>
+            <% } %>
+          <% }else{ %>
+            <h2 style="color: white;" >I am a very mysterious person!</h2>
+            <% } %>
+    <br>
+    <br>
+    <form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+      <p style="color: red;" >Write <strong>delete</strong> to delete your all data we are collecting (bio, YOUR BOTS)!</p>
+      <input class="w3-input w3-border"  style="border-radius: 5px; width:300px" maxlength="50" type="text" name="captcha"  value="" placeholder="delete">
+     <br>
+      <button style="width:50px; color: rgb(230, 123, 123);" name="requestdelete" value="Don't try change the id neeba"><i class="fa fa-trash"></i> </button>
+    </form>
+    <hr style="margin-left: 300px; margin-right: 300px;">
+</center>
+<br>
+<br>
+<div class="left">
+    <h3 style="color: white;">Change your bio</h3>
+<form style="margin-top: 1em;" method="POST"> <!-- method="post" tiggers a POST request to the same url with the body of the form control inputs -->
+  <% if(profile){ %>
+    <% if(!profile.bio){ %>
+      <input class="input" style="border-radius: 5px; width: 600px;" maxlength="50" type="text" name="changebio"  value="I am a very mysterious person!" placeholder="i.e I am jone i love programming!" required><br><br>
+        <% }else if(profile.bio){ %>
+          <input class="input" style="border-radius: 5px; width: 600px;" maxlength="50" type="text" name="changebio"  value="<%= profile.bio %>" placeholder="i.e I am jone i love programming!" required><br><br>
+          <% } %>
+        <% }else{ %>
+          <input class="input" style="border-radius: 5px; width: 600px;" maxlength="50" type="text" name="changebio"  value="I am a very mysterious person!" placeholder="i.e I am jone i love programming!" required><br><br>
+          <% } %>
+  <button style="width:150px;" class="button custom" value="hm" >Update Bio</button>
+  </form>
+</div>
+<br>
+<br>
+<br>
+<hr style="margin-left: 200px; margin-right: 200px;">
+<div class="container">
+    <% if(bots.length === 0) { %>
+        <p style="color: white;">You don't have any bots!</p>
+        <% } %>
+    <% for (i = 0; i < bots.length; i++) { %>
+      <% bot.users.fetch(bots[i].botid) %>
+        <% } %>
+        <% for (i = 0; i < bots.length; i++) { %>
+      <div class="botcard">
+        <% let botname = ""; %>
+        <% let botavatar = ""; %>
+        <% if(bot.users.cache.get(bots[i].botid)) { %>
+          <% botname = bot.users.cache.get(bots[i].botid).username %>
+          <% botavatar = bot.users.cache.get(bots[i].botid).displayAvatarURL()  %>
+          <% }else{ %>
+            <% botavatar = bots[i].avatar %>
+          <% botname = "Error fetching" %>
+          <% } %>
+          <img src="<%= botavatar %>" style="width: 120px; height: 120px; border-radius: 70px;"> 
+          <div class="container">
+            <b style="background-color: rgb(114, 137, 218);  margin: 10px; height: 30px; border-radius: 10px; padding: 5px;"><i class="fa fa-check"></i> <%= bots[i].votes %></b>
+            <b style="background-color: rgb(114, 137, 218);  margin: 10px; height: 30px; border-radius: 10px; padding: 5px;"><i class="fa fa-server"></i> <%= bots[i].servers %></b>
+            <b style="background-color: rgb(114, 137, 218);  margin: 10px; height: 30px; border-radius: 10px; padding: 5px;"><i class="fa fa-sitemap"></i> <%= bots[i].shards %></b>
+      </div>
+            <h2><%= botname %></h2>
+        <p style="word-wrap:break-word;"><%= bots[i].short %></p>
+        <% bots[i].tags.split(", ").map(x => { %>
+          <b style="color: white;  background-color: rgb(114, 137, 218); border-radius: 3px; padding: 3px; font-size: 12px;"><%= x %></b> 
+          <% }) %>
+          <br>
+          <br>
+        <a href="<%= bots[i].invite %>" class="viewbutton" ><i class="fa fa-plus"></i> Invite</a>
+        <% if(bots[i].status == "denied"){  %>
+        <a href="/bots/<%= bots[i].botid %>/resubmit" class="viewbutton" ><i class="fa fa-pencil"></i> Resubmit Bot</a>
+        <% }else{ %>
+          <a href="/bots/<%= bots[i].botid %>" class="viewbutton" ><i class="fa fa-eye"></i> View</a>
+          <a href="/bots/<%= bots[i].botid %>/edit" class="viewbutton" ><i class="fa fa-pencil"></i> Edit</a>
+        <% } %>
+      </div>
+    <% } %>  
+    </div>
+</body>
+</html>
+<br><br><br><br><br><br>
+<center>
+</center>
+<br>
+<br>
+<%- include("partials/footer") %>
