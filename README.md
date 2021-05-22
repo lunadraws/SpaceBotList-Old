@@ -35,6 +35,21 @@ exports.pendingbots=process.env.pendingbots
 
 ```
 
+.env File:
+
+```
+  "mongo": "put your mongoURI from https://www.mongodb.com/ here ,
+  "clientsecret": "Bot client secret",
+  "guildid": "816037009478647820",
+  "staff": "staff role",
+  "votelogs": "vote log channel id",
+  "verifiedbots": "verfied bots role id",
+  "verifieddevs": "verfied devs role ir",
+  "botlogs": "bot log channel id",
+  "pendingbots": "pendig bots role id",
+  "TOKEN": "Bot Token"`
+```
+
 Team:
 
 Developers
