@@ -35,6 +35,8 @@ exports.pendingbots=process.env.pendingbots
 
 ```
 
+**Rename .env.example to .env**
+
 .env File:
 
 ```
