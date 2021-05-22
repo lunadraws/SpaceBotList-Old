@@ -41,14 +41,14 @@
   <% if(bots.length === 0) { %>
     <p style="color: white;">No bots for now</p>
     <% }else{ %>
-<% for (i = 0; i < bots2.length; i++) { %>
-  <% bot.users.fetch(bots2[i].botid) %>
+<% for (i = 0; i < bots.length; i++) { %>
+  <% bot.users.fetch(bots[i].botid) %>
     <% } %>
     <% for (i = 0; i < 8; i++) { %>
   <div class="botcard">
     <% let botname = "Coming Soon"; %>
     <% let botavatar = "https://maxcdn.icons8.com/Share/icon/Logos/discord_logo1600.png"; %>
-    <% let botvotes = "10000000"; %>
+    <% let botvotes = "0"; %>
     <% let botservers = "0"; %>
     <% let botshards = "0"; %>
     <% let presence = ""; %>
@@ -102,9 +102,6 @@
   </div>
     <h2><%= botname %></h2>
     <p style="word-wrap:break-word;"><%= botshort %></p>
-<% bots[i].tags.split(", ").map(x => { %>
-  <b style="color: white;  background-color: rgb(114, 137, 218); border-radius: 3px; padding: 3px; font-size: 12px;"><%= x %></b> 
-  <% }) %>
   <br>
   <br>
     <a href="<%= botinvite %>" class="viewbutton" ><i class="fa fa-plus"></i> Invite</a>
@@ -116,8 +113,7 @@
 
 <hr style="margin-left: 200px; margin-right: 200px;">
 <div style="margin-left: 100px;">
-<h2 style="color:white; margin-left: 100px;"><i class="fa fa-clock-o" aria-hidden="true"></i> New apporved Bots!</h2>
-</div>
+<h2 style="color:white; margin-left: 100px;"><i class="fa fa-clock-o" aria-hidden="true"></i> New Approved Bots!</h2>
 <div class="container">
   <% if(bots.length === 0) { %>
     <p style="color: white;">No bots for now</p>
@@ -183,9 +179,6 @@
   </div>
     <h2><%= botname2 %></h2>
     <p style="word-wrap:break-word;"><%= botshort2 %></p>
-    <% bots[i].tags.split(", ").map(x => { %>
-  <b style="color: white;  background-color: rgb(114, 137, 218); border-radius: 3px; padding: 3px; font-size: 12px;"><%= x %></b> 
-  <% }) %>
       <br>
       <br>
     <a href="<%= botinvite2 %>" class="viewbutton" ><i class="fa fa-plus"></i> Invite</a>
